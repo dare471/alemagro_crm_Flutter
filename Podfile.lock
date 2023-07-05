@@ -54,8 +54,6 @@ PODS:
     - SDWebImageWebPCoder
   - flutter_native_image (0.0.1):
     - Flutter
-  - flutter_pdfview (1.0.2):
-    - Flutter
   - flutter_phone_direct_caller (0.0.1):
     - Flutter
   - flutter_share (0.0.1):
@@ -116,7 +114,6 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_image_compress (from `.symlinks/plugins/flutter_image_compress/ios`)
   - flutter_native_image (from `.symlinks/plugins/flutter_native_image/ios`)
-  - flutter_pdfview (from `.symlinks/plugins/flutter_pdfview/ios`)
   - flutter_phone_direct_caller (from `.symlinks/plugins/flutter_phone_direct_caller/ios`)
   - flutter_share (from `.symlinks/plugins/flutter_share/ios`)
   - flutter_sound (from `.symlinks/plugins/flutter_sound/ios`)
@@ -125,10 +122,10 @@ DEPENDENCIES:
   - just_audio (from `.symlinks/plugins/just_audio/ios`)
   - local_auth_ios (from `.symlinks/plugins/local_auth_ios/ios`)
   - multi_image_picker (from `.symlinks/plugins/multi_image_picker/ios`)
-  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - photo_gallery (from `.symlinks/plugins/photo_gallery/ios`)
-  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/ios`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
@@ -162,8 +159,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_image_compress/ios"
   flutter_native_image:
     :path: ".symlinks/plugins/flutter_native_image/ios"
-  flutter_pdfview:
-    :path: ".symlinks/plugins/flutter_pdfview/ios"
   flutter_phone_direct_caller:
     :path: ".symlinks/plugins/flutter_phone_direct_caller/ios"
   flutter_share:
@@ -181,13 +176,13 @@ EXTERNAL SOURCES:
   multi_image_picker:
     :path: ".symlinks/plugins/multi_image_picker/ios"
   path_provider_foundation:
-    :path: ".symlinks/plugins/path_provider_foundation/ios"
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
   permission_handler_apple:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
   photo_gallery:
     :path: ".symlinks/plugins/photo_gallery/ios"
   shared_preferences_foundation:
-    :path: ".symlinks/plugins/shared_preferences_foundation/ios"
+    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
@@ -205,7 +200,6 @@ SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_image_compress: 5a5e9aee05b6553048b8df1c3bc456d0afaac433
   flutter_native_image: 9c0b7451838484458e5b0fae007b86a4c2d4bdfe
-  flutter_pdfview: 25f53dd6097661e6395b17de506e6060585946bd
   flutter_phone_direct_caller: bd2ffd297f371a8a6c7bfbba0196964ffe3c4358
   flutter_share: 4be0208963c60b537e6255ed2ce1faae61cd9ac2
   flutter_sound: c60effa2a350fb977885f0db2fbc4c1ad5160900
