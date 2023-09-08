@@ -1,5 +1,5 @@
 import 'package:alem_application/bloc/search/search_bloc.dart';
-import 'package:alem_application/bloc/search/search_event.dart';
+
 import 'package:alem_application/views/myClient/my_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,8 +23,8 @@ class _HomePageState extends State<HomePage> {
     "Главная",
     "Календарь",
     "Оплаты клиентов",
-    "Клиенты"
-        "Мой профиль",
+    "Клиенты",
+    "Мой профиль",
   ]; // заголовки для каждой страницы
 
   @override
@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
         child: SchedulePaymentPage(),
       ),
       BlocProvider(
-        create: (context) => MyClientBloc()..add(SearchClientEvent('')),
+        create: (context) => ClientBloc()..add(ClientEvent('ТОО')),
         child: MyClient(),
       ),
       Center(child: UserBlock()),

@@ -106,16 +106,6 @@ class _SchedulePaymentPageState extends State<SchedulePaymentPage> {
   Widget _buildPaymentList(dynamic cachedData) {
     return Column(
       children: [
-        const SizedBox(height: 10),
-        const Text(
-          "Оплаты клиентов",
-          style: TextStyle(fontSize: 21, fontWeight: FontWeight.w300),
-          textAlign: TextAlign.start,
-        ),
-        const Divider(
-          height: 10,
-          color: Color.fromARGB(255, 0, 113, 199),
-        ),
         Expanded(
           child: ListView.builder(
             itemCount: cachedData.length,

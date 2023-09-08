@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class UserBlock extends StatefulWidget {
   @override
@@ -8,10 +9,12 @@ class UserBlock extends StatefulWidget {
 class _UserBlockState extends State<UserBlock>
     with SingleTickerProviderStateMixin {
   late final TabController _tabController;
+  final authData = Hive.box('authBox').get('data');
 
   @override
   void initState() {
     super.initState();
+
     _tabController = TabController(length: 3, vsync: this);
   }
 
@@ -24,7 +27,7 @@ class _UserBlockState extends State<UserBlock>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: EdgeInsets.all(10),
       child: Column(
         children: [
           const SizedBox(
@@ -37,34 +40,41 @@ class _UserBlockState extends State<UserBlock>
               color: Color(0xFF035AA6),
               borderRadius: BorderRadius.circular(20),
             ),
-            child: const DefaultTextStyle(
-              style: TextStyle(color: Colors.white),
+            child: DefaultTextStyle(
+              style: const TextStyle(color: Colors.white, fontSize: 17),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      CircleAvatar(
+                      const CircleAvatar(
                         maxRadius: 60,
                         child: Icon(
                           Icons.person,
                           size: 80,
                         ),
                       ),
-                      SizedBox(height: 20),
-                      Text('Name'),
+                      const SizedBox(height: 20),
+                      Text(authData['user']['name'].toString()),
                     ],
                   ),
+                  SizedBox(width: 30),
                   Column(
-                    children: [
-                      Text('information'),
-                      Text('information'),
-                      Text('information'),
-                      Text('information'),
-                    ],
-                  ),
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Почта: '),
+                        Text('${authData['user']['email'].toString()}',
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 13)),
+                        Text(
+                            'Телеграм ID: ${authData['user']['telegramId'].toString()}',
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 13))
+                      ]),
                 ],
               ),
             ),
@@ -102,13 +112,13 @@ class _UserBlockState extends State<UserBlock>
                     controller: _tabController,
                     children: const [
                       Center(
-                        child: Text("It's info user here"),
+                        child: Text("Раздел Уведомления"),
                       ),
                       Center(
-                        child: Text("It's order here"),
+                        child: Text("Раздел Контрактов"),
                       ),
                       Center(
-                        child: Text("It's setting here"),
+                        child: Text("Раздел Настроек"),
                       ),
                     ],
                   ),

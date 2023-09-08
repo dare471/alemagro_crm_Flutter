@@ -76,8 +76,9 @@ class _mainInfoUser extends State<MainInfoUser> {
                       ),
                     ),
                   ),
-                  const Divider(height: 10, thickness: 1),
                   const SizedBox(height: 5),
+                  const Divider(height: 10, thickness: 1),
+                  const SizedBox(height: 10),
                   // To-Do List
                   BlocBuilder<CalendarBloc, CalendarState>(
                       builder: (context, state) {
@@ -85,7 +86,7 @@ class _mainInfoUser extends State<MainInfoUser> {
                       return Column(
                         children: [
                           const Text(
-                            "Визиты ближайщие",
+                            "Ваши визиты",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 16),
                           ),

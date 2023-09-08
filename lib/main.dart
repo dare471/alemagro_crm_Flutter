@@ -1,3 +1,4 @@
+import 'package:alem_application/bloc/calendar_bloc/add_visit_bloc/add_visit_bloc.dart';
 import 'package:alem_application/bloc/survey/answerQuestion/global_manager_bloc.dart';
 import 'package:alem_application/views/home/home_page.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'bloc/auth_bloc.dart';
 import 'views/login/login_page.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
@@ -19,6 +21,8 @@ void main() async {
         MultiBlocProvider(
           providers: [
             BlocProvider(create: (context) => globalManagerBloc),
+            BlocProvider<AddVisitBloc>(
+                create: (BuildContext context) => AddVisitBloc()),
             BlocProvider(
                 create: (context) => authBloc..add(CheckAuthenticationEvent())),
           ],
@@ -32,6 +36,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('ru', ''),
+      ],
       debugShowCheckedModeBanner: false,
       title: 'Авторизация',
       theme: ThemeData(

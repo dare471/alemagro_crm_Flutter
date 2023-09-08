@@ -1,28 +1,52 @@
 import 'dart:convert';
-import 'package:alem_application/bloc/search/search_event.dart';
-import 'package:alem_application/bloc/search/search_state.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:alem_application/models/client_search_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MyClientBloc extends Bloc<MyClientEvent, MyClientState> {
-  MyClientBloc() : super(MyClientInitial());
+class ClientEvent {
+  final String query;
+  ClientEvent(this.query);
+}
+
+abstract class ClientState {}
+
+class ClientLoading extends ClientState {}
+
+class ClientLoaded extends ClientState {
+  final List<Client> clients;
+  ClientLoaded(this.clients);
+}
+
+class ClientError extends ClientState {
+  final String message;
+  ClientError(this.message);
+}
+
+class ClientBloc extends Bloc<ClientEvent, ClientState> {
+  ClientBloc()
+      : super(ClientLoading()); // Изначальное состояние теперь ClientLoading
 
   @override
-  Stream<MyClientState> mapEventToState(MyClientEvent event) async* {
-    if (event is SearchClientEvent) {
-      yield MyClientLoading();
-
+  Stream<ClientState> mapEventToState(ClientEvent event) async* {
+    yield ClientLoading();
+    if (event.query.isNotEmpty) {
       final response = await http.post(
         Uri.parse('https://crm.alemagro.com:8080/api/manager/workspace'),
-        body: jsonEncode({'type': 'searchClient', 'clientName': event.query}),
+        body: jsonEncode({
+          "type": "searchClient",
+          "clientName": event.query, // используем query из события
+        }),
+        headers: {"Content-Type": "application/json"},
       );
 
       if (response.statusCode == 200) {
-        final List clients = jsonDecode(response.body);
-        yield MyClientLoaded(
-            clients.map((e) => e as Map<String, dynamic>).toList());
+        List<Client> clients = (jsonDecode(response.body) as List)
+            .map((clientJson) => Client.fromJson(clientJson))
+            .toList();
+        print(clients.toList());
+        yield ClientLoaded(clients);
       } else {
-        yield MyClientError("An error occurred while fetching data");
+        yield ClientError("Some error message");
       }
     }
   }
